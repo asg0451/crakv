@@ -6,6 +6,8 @@ edition = "2024"
 [dependencies]
 async-maelstrom = "0.1.2"
 async-trait = "0.1.87"
+color-eyre = "0.6.3"
+eyre = "0.6.12"
 log = "0.4.26"
 tokio = { version = "1.44.0", features = ["full", "tracing"] }
 tracing = { version = "0.1.41", features = ["log"] }
