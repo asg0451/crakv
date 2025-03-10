@@ -15,8 +15,9 @@ async fn main() -> Status {
         .init();
     info!("starting");
 
-    // Create an echo process and a runtime to execute it
-    let process: echo::EchoServer = Default::default();
+    // let process: echo::EchoServer = Default::default();
+    let process: simple_kv::SimpleKVServer = Default::default();
+
     let r = Arc::new(Runtime::new(std::env::args().collect(), process).await?);
 
     // Drive the runtime, and ...
