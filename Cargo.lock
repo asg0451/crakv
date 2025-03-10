@@ -314,11 +314,9 @@ dependencies = [
  "color-eyre",
  "derivative",
  "eyre",
- "log",
  "serde_json",
  "tokio",
  "tracing",
- "tracing-log",
  "tracing-subscriber",
 ]
 

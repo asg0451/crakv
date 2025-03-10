@@ -90,7 +90,7 @@ impl Process<LinKv, ()> for SimpleKVServer {
 }
 
 impl SimpleKVServer {
-    #[tracing::instrument]
+    #[tracing::instrument(skip(self), level = "debug")]
     async fn handle_read(&self, msg_id: MsgId, key: Key, src: Id) -> Status {
         let val = {
             let kv = &self.state.read().unwrap().kv;
@@ -108,7 +108,7 @@ impl SimpleKVServer {
         Ok(())
     }
 
-    #[tracing::instrument]
+    #[tracing::instrument(skip(self), level = "debug")]
     async fn handle_write(&self, msg_id: MsgId, key: Key, value: Val, src: Id) -> Status {
         {
             let kv = &mut self.state.write().unwrap().kv;
@@ -125,7 +125,7 @@ impl SimpleKVServer {
         Ok(())
     }
 
-    #[tracing::instrument]
+    #[tracing::instrument(skip(self), level = "debug")]
     async fn handle_cas(&self, msg_id: MsgId, key: Key, from: Val, to: Val, src: Id) -> Status {
         #[derive(PartialEq, Eq)]
         enum Res {

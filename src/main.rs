@@ -8,10 +8,14 @@ mod simple_kv;
 
 #[tokio::main]
 async fn main() -> Status {
-    // Log to stderr where Maelstrom will capture it
+    let ef = tracing_subscriber::EnvFilter::builder()
+        .with_default_directive("crakv=info".parse().unwrap())
+        .from_env()
+        .unwrap();
     tracing_subscriber::fmt()
-        .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+        .with_env_filter(ef)
         .with_writer(std::io::stderr)
+        .with_span_events(tracing_subscriber::fmt::format::FmtSpan::CLOSE)
         .init();
     info!("starting");
 
